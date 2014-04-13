@@ -1,0 +1,16 @@
+extends layout
+
+block content
+   #title-banner
+      h1= title
+      p= desc
+   #sub.container
+      div(id="index-container", class="col-sm-6 col-sm-offset-3")
+         div(class="btn-toolbar")
+            p Login or Register with:
+            a(class="btn btn-success btn-lg", href="/login")
+               span(class="fa fa-user")
+               | Login
+            a(class="btn btn-success btn-lg", href="/signup")
+               span(class="fa fa-user")
+               | Signup

@@ -1,0 +1,38 @@
+extends session-layout
+
+block content
+	div(class="page-header text-center")
+		h2
+			span(class="fa fa-anchor")
+			| Profile 
+	.row
+		#left.col-sm-6
+			.well
+				h3
+					span(class="fa fa-user")
+					| User Info
+				p(style="text-align: left;")
+					strong id
+					| : #{user._id}
+					br
+					strong email
+					| : #{user.local.email}
+					br
+					strong password
+					| : #{user.local.password}
+					br
+					strong created_at
+					| : #{user.local.created_at}
+					br
+					strong admin
+					| : #{user.local.admin}
+		#right.col-sm-6
+			.well
+				h3
+					span(class="fa fa-info-circle")
+					| Guide
+				p(style="text-align: left;")
+				| #{about}
+				| Panel: View video, button instructions, terminal commands
+				br
+				| Terminal: terminal commands

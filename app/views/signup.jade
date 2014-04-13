@@ -1,0 +1,45 @@
+extends layout
+
+block content
+   #title-banner
+      h1= title
+      p= desc
+   .container
+      div(id="signup", class="col-sm-6 col-sm-offset-3")
+         h2(id="login-icon")
+            span(id="login-icon-span" class="fa fa-sign-in")
+            | Signup
+
+         if message.length > 0 
+            div(class="alert alert-danger")= message
+
+         if success_msg.length > 0
+            div(class="alert alert-success")= success_msg
+
+         form(id="signupForm", action="/signup", method="post", name="signupForm")
+            .form-group#emailGroup
+               label Email
+               input#formEmail.form-control(type="text", name="email", placeholder="Email")
+               p(class = "help-block", id="emailValidate", style="display:none;") Please enter a valid email.
+            .form-group#passwordGroup
+               label Password
+               input#formPassword.form-control(type="password", name="password", placeholder="Password")
+               p(class = "help-block", id="passwordValidate", style="display:none;") Please enter a valid password.
+               p(class = "help-block", id="passwordSize", style="display:none;") Password must be between 8 and 24 characters.
+            .form-group#passwordConfirmGroup
+               label Confirm Password
+               input#formConfirmPassword.form-control(type="password", name="confirmPassword", placeholder="Confirm Password")
+               p(class = "help-block", id="confirmPasswordValidate", style="display:none;") Passwords must match.
+            button(class="btn btn-success btn-lg", type="submit", id="submitButton") Signup
+         hr
+         p
+            | Already have an account? 
+            a(href="/login") Login
+         p
+            | Or go 
+            a(href="/") home
+            | .
+
+
+block scripts
+   script(src="/javascripts/validation.js")

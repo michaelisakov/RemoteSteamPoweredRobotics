@@ -1,0 +1,69 @@
+extends session-layout
+
+block head
+	link(rel="stylesheet", href="/stylesheets/jquery.terminal.css")
+	script(src="/javascripts/jquery-2.1.0.js")
+	script(src="/socket.io/socket.io.js")
+	script(src="/javascripts/smoothie.js")
+
+block content
+	div(class="page-header text-center")
+		h2
+			span(class="fa fa-dashboard")
+			| Control Panel
+	.row 
+		#left.col-sm-6
+			.well Video and stat-info goes here
+				#controlButtons
+					#buttonFlashMessage(class="alert alert-danger", style="display:none")
+					button(id="dirButton") Dir
+		#right.col-sm-6
+			.well Terminal functions go here
+				#charts(style="width:100%")
+					span CPU_USAGE (%) :
+					canvas#cpuUsage(width="400", height="100")
+
+	div(class="page-header text-center")
+		h2
+			span(class="fa fa-terminal")
+			| Terminal
+	.row 
+		#left.col-sm-12
+			.well Terminal goes here
+				.cmd
+					#terminal-nav.terminal-nav
+						h3(style="vertical-align:top;")
+								#userInfo(style="margin-right: 5%; display:inline-block;")
+									span(class="fa fa-cog" style="position:relative;right:1%;")
+									span User: 
+									span#userEmail #{user.local.email}
+								#childControl(style="display:inline-block;")
+									button(type="button", id="startChild", class="btn btn-success")
+										span(id="startChildIcon", class="fa fa-power-off")
+						#flashMessage(class="alert alert-danger", style="display:none;")
+						.connects(style="padding-bottom:10px;")
+							span(id="connectCircle", class="fa fa-circle", style="display:none;color:#7EBB32;")
+							#numberOfConnections(class="numberOfConnections")
+					#terminal.terminal
+					input#prompt.prompt(placeholder = "Enter commands here")
+
+	.row
+		#left.col-sm-12
+			.well Command Buffer
+				#terminal-buffer
+			.well Command History
+				#log-history
+					div(class="btn-group")
+						button(type="button", id="updateLogsButton", class="btn btn-default") <span class="fa fa-refresh"></span>
+					table(class="table table-striped", id="logTable")
+						thead(align="center")
+							tr
+								th #
+								th User
+								th Command
+								th Created At
+						tbody#tbody
+
+block includes
+	script(src="/javascripts/terminal.js")
+
